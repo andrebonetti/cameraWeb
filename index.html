@@ -1,0 +1,35 @@
+<html>
+    <head>
+
+        <title>Foto</title>
+
+        <meta charset="utf-8">
+
+        <!-- BIBLIOTECA JAVASCRIPT (JQUERY) -->  
+        <script src="libs/jquery/jquery-2.2.4.js"></script>
+
+        <!-- SCRIPT -->
+        <script src="js/index.js"></script>
+        
+    </head>
+    <body>
+
+        <!-- ELEMENTO QUE EXIBE A CAMERA EM TEMPO REAL -->
+        <video id="camera">
+            <!-- MENSAGEM PARA USUARIO CASO OCORRA UM ERRO COM A CAMERA -->
+            Recurso não disponivel para esse dispositivo.
+        </video>
+
+        <!-- ELEMENTO HTML QUE EXIBE A IMAGEM CAPTURADA -->
+        <canvas id="canvas" width="500" height="500" ></canvas>
+        
+        <!-- IMAGEM NO FORMATO JPG (USADA PARA ENVIO) -->
+        <img class="imagem-capturada">
+
+        <!-- OPCOES DE ACAO -->
+        <button id="capturar">Capturar</button>
+        <button id="confirmar">Confirmar</button>
+        <button id="trocar">Trocar</button>
+        
+    </body>
+</html>
