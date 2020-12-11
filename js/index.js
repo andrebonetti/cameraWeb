@@ -10,6 +10,8 @@ $(function(){
     var botaoConfirmar = $('#confirmar');
     var botaoTrocar = $('#trocar');
 
+    var mensagemResultado = $('#mensagem-resultado');
+
     // ACOES INICIAIS
     imagemCaptura.hide();
     canvas.hide();
@@ -37,9 +39,25 @@ $(function(){
         imagemCaptura.attr('src', image.camImage);
     }
 
+    // FUNCAO QUE PEGA O IMG, CONVERTE PARA BASE64 E ENVIA FORMULARIO
+    var enviarImagem = function () {
+        var base64 = imagemCaptura[0].src;
+        $(".input_capture").val(base64);
+        $('.form-upload').ajaxSubmit({
+            url: 'upload.php',
+            success: function (responseData, textStatus, jqXHR) {
+                mensagemResultado.text("Imagem enviada com sucesso");
+            },error: function (data) {
+                mensagemResultado.text("Erro ao enviar imagem");
+            }
+        });
+    }
+
     // EVENTOS DOS BOTOES
     botaoCapturar.click(function () {
         capturar();
+
+        botaoTrocar.text("Trocar")
 
         botaoCapturar.hide();
         botaoTrocar.show();
@@ -54,6 +72,15 @@ $(function(){
         botaoConfirmar.hide();
         botaoCapturar.show();
         
+    });
+
+    botaoConfirmar.click(function () {
+        enviarImagem();
+
+        botaoTrocar.text("Enviar nova foto")
+        botaoTrocar.show();
+        botaoConfirmar.hide();
+        botaoCapturar.hide();     
     });
 
     
